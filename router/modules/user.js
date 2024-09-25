@@ -28,11 +28,30 @@ async function addUser(ctx, next) {
   await next();
   const user = ctx.request.body;
   const u = await UserService.addUser(user);
-  ResponseUtil.success(ctx, u);
+  if (u !== null) {
+    ResponseUtil.success(ctx, u);
+  } else {
+    ResponseUtil.error(ctx, 'add user failed');
+  }
+}
+
+async function updateUser(ctx, next) {
+  await next();
+  const { id } = ctx.params;
+  const user = ctx.request.body;
+  user.id = id;
+  // console.log(user, '------');
+  const u = await UserService.updateUser(user);
+  if (u !== null) {
+    ResponseUtil.success(ctx, u);
+  } else {
+    ResponseUtil.error(ctx, 'update user failed');
+  }
 }
 
 export default {
   'GET /users': getUsers,
   'GET /users/:id': getUserByID,
   'POST /users': addUser,
+  'PUT /users/:id': updateUser,
 };

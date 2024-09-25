@@ -15,8 +15,19 @@ async function addUser(user) {
   return newUser;
 }
 
+async function updateUser(userNew) {
+  const user = await getUserByID(userNew.id);
+  if (user) {
+    Object.keys(userNew).forEach((key) => {
+      user[key] = userNew[key];
+    });
+  }
+  return user.save();
+}
+
 export default {
   getUsers,
   getUserByID,
   addUser,
+  updateUser,
 };

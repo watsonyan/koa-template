@@ -28,6 +28,10 @@ async function scanRouters(routerDir) {
         const p = url.substring(5);
         router.post(p, mappings[url]);
         console.log(`mapping: POST ${p}`);
+      } else if (url.startsWith('PUT ')) {
+        const p = url.substring(4);
+        router.put(p, mappings[url]);
+        console.log(`mapping: PUT ${p}`);
       } else {
         console.warn(`invalid mapping: ${url}`);
       }
