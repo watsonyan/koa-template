@@ -4,17 +4,16 @@ import { readdirSync } from 'node:fs';
 
 const router = new Router();
 
-router.get('/', async (ctx, next) => {
-  await next();
-  ctx.body = '<h1>Index</h1>';
-});
+// router.get('/', async (ctx, next) => {
+//   await next();
+//   ctx.body = '<h1>Index</h1>';
+// });
 
 async function scanRouters(routerDir) {
   // 扫描router/modules目录:
   const dirname = path.resolve('./router');
   console.log(`scan dir ${dirname}...`);
   const files = readdirSync(path.join(dirname, routerDir)).filter((f) => f.endsWith('.js'));
-  // for (const file in files) {
   files.forEach(async (file) => {
     // 导入模块:
     console.log(`import router/modules/${file}...`);

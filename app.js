@@ -3,21 +3,21 @@ import bodyParser from '@koa/bodyparser';
 
 import router from './router/index.js';
 
-import { sequelize, User } from './db/orm.js';
+import { sequelize } from './db/orm.js';
 
 async function initDb() {
-  await sequelize.sync();
-  const email = 'Admin@example.com';
-  const user = await User.findOne({ where: { email } });
-  // console.log(user);
-  // 不存在则自动创建:
-  if (user === null) {
-    await User.create({
-      email,
-      name: 'Bob',
-      password: '123456',
-    });
-  }
+  await sequelize.sync({ force: false });
+  // const email = 'Admin@example.com';
+  // const user = await User.findOne({ where: { email } });
+  // // console.log(user);
+  // // 不存在则自动创建:
+  // if (user === null) {
+  //   await User.create({
+  //     email,
+  //     name: 'Bob',
+  //     password: '123456',
+  //   });
+  // }
 }
 
 initDb();
