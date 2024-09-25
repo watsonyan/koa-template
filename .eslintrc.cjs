@@ -21,10 +21,9 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'prettier/prettier': [
-      'error',
-      { singleQuote: true, semi: true, trailingComma: 'all' },
-    ],
+    'prettier/prettier': ['error', { singleQuote: true, semi: true, trailingComma: 'all', printWidth: 120 }],
     'no-console': 'off',
+
+    'import/extensions': ['error', 'always', { js: 'always', jsx: 'never' }],
   },
 };
