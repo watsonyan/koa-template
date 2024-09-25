@@ -1,6 +1,10 @@
 import { Sequelize, DataTypes } from 'sequelize';
 
-export const sequelize = new Sequelize('sqlite:./test.db');
+// import path from 'node:path';
+
+// const workDir = path.resolve('.');
+// console.log(workDir, 'workDir---------');
+export const sequelize = new Sequelize('sqlite:./db/test.db');
 
 export const User = sequelize.define(
   'User',
